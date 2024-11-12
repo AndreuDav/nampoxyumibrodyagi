@@ -5,6 +5,11 @@ from django.urls import path
 from app import views as user_views
 from app.views import registration
 
+
+
+
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
