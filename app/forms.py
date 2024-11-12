@@ -5,13 +5,13 @@ from django.contrib.auth.models import User
 class SignUpForm(UserCreationForm):
     phone_number = forms.CharField(
         max_length=15,
-        help_text=' Формат +7...', label='Номер телефона'
+        help_text='Формат +7', label='Номер телефона '
     )
     password1 = forms.CharField(
         label='Password',
         strip=False,
         widget=forms.PasswordInput(attrs={"autocomplete": "new-password"}),
-        help_text='Цифры и буквы',
+        help_text='',
     )
 
     class Meta:
