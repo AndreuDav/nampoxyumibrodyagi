@@ -1,15 +1,8 @@
-from django.contrib.auth import authenticate, login
-
-from .models import Post
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
-
-
-def home(request):
-    context = {
-        'posts': Post.objects.all()
-    }
-    return render(request, 'blog/home.html', context)
+from .forms import SignUpForm
+from .models import Profile
+from django_email_verification import send_email
 
 
 def about(request):
@@ -18,16 +11,17 @@ def about(request):
 
 def registration(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = SignUpForm(request.POST)
         if form.is_valid():
-            form.save()
-            # получаем имя пользователя и пароль из формы
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password1')
-            # выполняем аутентификацию
-            user = authenticate(username=username, password=password)
+            user = form.save()
+            Profile.objects.create(user=user, phone_number=form.cleaned_data.get('phone_number'))
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=user.username, password=raw_password)
             login(request, user)
+            # высылаем письмо и делаем его неактивным
+            user.is_active = False
+            send_email(user)
             return redirect('/')
     else:
-        form = UserCreationForm()
+        form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
