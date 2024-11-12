@@ -31,6 +31,17 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
 
+<<<<<<< HEAD
+
+	'Management',
+	'django.contrib.admin',
+	'django.contrib.auth',
+	'django.contrib.contenttypes',
+	'django.contrib.sessions',
+	'django.contrib.messages',
+	'django.contrib.staticfiles',
+    'app.apps.PeopleTwoConfig',
+=======
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,6 +52,7 @@ INSTALLED_APPS = [
     'django_email_verification',
     'django.contrib.sessions',
     'rest_framework',
+>>>>>>> 1a703353dbb6626a4b7ea24d946cff5cf1ec1a8e
 ]
 
 MIDDLEWARE = [
@@ -107,7 +119,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'ru-ru'
+LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Europe/Samara'
 
@@ -174,6 +186,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #     "SLIDING_TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSlidingSerializer",
 # }
 
+<<<<<<< HEAD
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+=======
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
@@ -215,3 +230,4 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
 }
+>>>>>>> 1a703353dbb6626a4b7ea24d946cff5cf1ec1a8e
