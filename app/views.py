@@ -25,3 +25,26 @@ def registration(request):
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
+
+from rest_framework import generics, permissions
+from .models import Task
+from serializers import TaskSerializer
+
+class TaskListCreateView(generics.ListCreateAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = TaskSerializer
+
+    def get_queryset(self):
+        project_id = self.kwargs['project_id']
+        return Task.objects.filter(project_id=project_id)
+
+    def perform_create(self, serializer):
+        project_id = self.kwargs['project_id']
+        serializer.save(project_id=project_id)
+
+class TaskRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = TaskSerializer
+
+    def get_queryset(self):
+        return Task.objects.all()

@@ -34,15 +34,14 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
 
 
-	'crispy_forms',
+	'Management',
 	'django.contrib.admin',
 	'django.contrib.auth',
 	'django.contrib.contenttypes',
+	'django.contrib.sessions',
 	'django.contrib.messages',
 	'django.contrib.staticfiles',
     'app.apps.PeopleTwoConfig',
-    'django_email_verification',
-    'django.contrib.sessions',
 ]
 
 MIDDLEWARE = [
@@ -110,7 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'ru-ru'
+LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
@@ -180,34 +179,3 @@ SIMPLE_JWT = {
 }
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
-def verified_callback(user):
-    user.is_active = True
-
-EMAIL_VERIFIED_CALLBACK = verified_callback
-
-# тема письма
-EMAIL_MAIL_SUBJECT = 'Confirm your email'
-# шаблон письма в html
-EMAIL_MAIL_HTML = 'mail_body.html'
-# текстовый шаблон
-EMAIL_MAIL_PLAIN = 'mail_body.txt'
-# время жизни ссылки
-EMAIL_MAIL_TOKEN_LIFE = 60 * 60
-# шаблон, который увидят после перехода по ссылке
-EMAIL_MAIL_PAGE_TEMPLATE = 'confirm_template.html'
-# домен для использования в ссылке
-EMAIL_PAGE_DOMAIN = 'http://mydomain.com/'
-EMAIL_MULTI_USER = True
-
-# настройки SMTP сервера
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'mymail@gmail.com'
-EMAIL_FROM_ADDRESS = 'mymail@gmail.com'
-EMAIL_HOST_PASSWORD = 'mYC00lP4ssw0rd'
-EMAIL_USE_TLS = True
-
-# используется для тестирования
-# выводит письма в консоли
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
