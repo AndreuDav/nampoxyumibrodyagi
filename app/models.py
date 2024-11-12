@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils import timezone
 from django.contrib.auth.models import User
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
@@ -12,6 +11,7 @@ class Profile(models.Model):
     phone_number = models.CharField(max_length=15)
     birth_date = models.DateField(null=True, blank=True)
 
+<<<<<<< HEAD
     def __str__(self):
         return self.title
 
@@ -37,3 +37,5 @@ class Task(models.Model):
 
     def __str__(self):
         return self.title
+=======
+>>>>>>> 1a703353dbb6626a4b7ea24d946cff5cf1ec1a8e

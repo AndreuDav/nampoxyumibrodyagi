@@ -3,10 +3,7 @@ from django.shortcuts import render, redirect
 from .forms import SignUpForm
 from .models import Profile
 from django_email_verification import send_email
-
-
-def about(request):
-    return render(request, 'blog/about.html', {'title': 'О клубе Python Bytes'})
+from django.contrib.auth.forms import UserCreationForm
 
 
 def registration(request):
@@ -18,13 +15,14 @@ def registration(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=raw_password)
             login(request, user)
-            # высылаем письмо и делаем его неактивным
-            user.is_active = False
+            # высылаем письмо и делаем его активным
+            user.is_active = True
             send_email(user)
             return redirect('/')
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
+<<<<<<< HEAD
 
 from rest_framework import generics, permissions
 from .models import Task
@@ -48,3 +46,5 @@ class TaskRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         return Task.objects.all()
+=======
+>>>>>>> 1a703353dbb6626a4b7ea24d946cff5cf1ec1a8e
