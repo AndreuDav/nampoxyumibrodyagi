@@ -22,29 +22,26 @@ def registration(request):
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
-<<<<<<< HEAD
 
 from rest_framework import generics, permissions
 from .models import Task
-from serializers import TaskSerializer
-
-class TaskListCreateView(generics.ListCreateAPIView):
-    permission_classes = [permissions.IsAuthenticated]
-    serializer_class = TaskSerializer
-
-    def get_queryset(self):
-        project_id = self.kwargs['project_id']
-        return Task.objects.filter(project_id=project_id)
-
-    def perform_create(self, serializer):
-        project_id = self.kwargs['project_id']
-        serializer.save(project_id=project_id)
-
-class TaskRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = [permissions.IsAuthenticated]
-    serializer_class = TaskSerializer
-
-    def get_queryset(self):
-        return Task.objects.all()
-=======
->>>>>>> 1a703353dbb6626a4b7ea24d946cff5cf1ec1a8e
+# from serializers import TaskSerializer
+#
+# class TaskListCreateView(generics.ListCreateAPIView):
+#     permission_classes = [permissions.IsAuthenticated]
+#     serializer_class = TaskSerializer
+#
+#     def get_queryset(self):
+#         project_id = self.kwargs['project_id']
+#         return Task.objects.filter(project_id=project_id)
+#
+#     def perform_create(self, serializer):
+#         project_id = self.kwargs['project_id']
+#         serializer.save(project_id=project_id)
+#
+# class TaskRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
+#     permission_classes = [permissions.IsAuthenticated]
+#     serializer_class = TaskSerializer
+#
+#     def get_queryset(self):
+#         return Task.objects.all()
